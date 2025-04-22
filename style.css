@@ -422,7 +422,7 @@ body {
 }
 
 .banner-3d .content-3d .model-3d {
-    background-image: url(images/logo.png);
+    background-image: url(logo.png);
     border-radius: 50%;
     width: 75vh;
     height: 75vh;
