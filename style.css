@@ -379,53 +379,26 @@ body {
     border-radius: 16px;
 }
 
-.banner-3d .content-3d {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(1400px, 100vw);
-    height: max-content;
-    padding-bottom: 100px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1;
-}
 
-.banner-3d .content-3d h1 {
-    font-family: 'ICA Rubrik';
-    font-size: 16em;
-    line-height: 1em;
-    color: #25283B;
-    position: relative;
-}
-
-.banner-3d .content-3d h1::after {
-    position: absolute;
-    inset: 0;
-    content: attr(data-content);
-    z-index: 2;
-    -webkit-text-stroke: 2px gray;
-    color: transparent;
-}
 
 .banner-3d .content-3d .author-3d {
     font-family: Poppins;
     text-align: right;
-    max-width: 200px;
+    max-width: 1850px;
+	margin-top: 650px;
 }
 
 .banner-3d .content-3d h2 {
-    font-size: 2em;
+    font-size: 40px;
+	position: relative;
+	z-index: 2;
 }
 
 .banner-3d .content-3d .model-3d {
     background-image: url(logo.png);
     border-radius: 50%;
-    width: 75vh;
-    height: 75vh;
+    width: 50vh;
+    height: 50vh;
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -434,6 +407,8 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     z-index: 1;
+	margin-bottom: 300px;
+	
 }
 
 /* Tablet */
