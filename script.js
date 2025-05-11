@@ -1,4 +1,3 @@
-// Existing JavaScript from your original script.js
 const slides = document.querySelectorAll(".slide");
 const prev = document.querySelector(".nav.left");
 const next = document.querySelector(".nav.right");
@@ -49,3 +48,40 @@ function hideSidebar() {
     const sidebar = document.querySelector('.navlinks-sidebar')
     sidebar.style.display = 'none'    
 }
+
+// New navigation functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Add click event listeners to each link
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get the page to show from data attribute
+            const pageToShow = this.getAttribute('data-page');
+            
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(`${pageToShow}-page`).classList.add('active');
+            
+            // Update active state of nav links
+            navLinks.forEach(navLink => {
+                navLink.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            // Hide sidebar if mobile
+            hideSidebar();
+        });
+    });
+    
+    // Initialize the home page as active
+    document.getElementById('home-page').classList.add('active');
+    document.querySelector('.nav-link[data-page="home"]').classList.add('active');
+});
