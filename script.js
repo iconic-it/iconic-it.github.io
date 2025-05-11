@@ -1,43 +1,62 @@
-const slides = document.querySelectorAll(".slide");
-const prev = document.querySelector(".nav.left");
-const next = document.querySelector(".nav.right");
-
-let current = 0;
-let timer;
-
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.remove("active");
-    if (i === index) slide.classList.add("active");
-  });
-}
-
-function nextSlide() {
-  current = (current + 1) % slides.length;
-  showSlide(current);
-}
-
-function prevSlide() {
-  current = (current - 1 + slides.length) % slides.length;
-  showSlide(current);
-}
-
-function resetTimer() {
-  clearInterval(timer);
-  timer = setInterval(nextSlide, 4000);
-}
-
-next.addEventListener("click", () => {
-  nextSlide();
-  resetTimer();
+// Initialize sliders for each slider container
+document.querySelectorAll('.slider-container').forEach(sliderContainer => {
+    const slides = sliderContainer.querySelectorAll(".slide");
+    const prev = sliderContainer.querySelector(".nav.left");
+    const next = sliderContainer.querySelector(".nav.right");
+    
+    let current = 0;
+    let timer;
+    
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove("active");
+            if (i === index) {
+                slide.classList.add("active");
+                slide.style.transform = "translateX(0)";
+                slide.style.zIndex = "1";
+            } else if (i < index) {
+                slide.style.transform = "translateX(-100%)";
+                slide.style.zIndex = "0";
+            } else {
+                slide.style.transform = "translateX(100%)";
+                slide.style.zIndex = "0";
+            }
+        });
+    }
+    
+    function nextSlide() {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+    }
+    
+    function prevSlide() {
+        current = (current - 1 + slides.length) % slides.length;
+        showSlide(current);
+    }
+    
+    function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(nextSlide, 4000);
+    }
+    
+    if (next) next.addEventListener("click", () => {
+        nextSlide();
+        resetTimer();
+    });
+    
+    if (prev) prev.addEventListener("click", () => {
+        prevSlide();
+        resetTimer();
+    });
+    
+    // Initialize first slide
+    showSlide(0);
+    
+    // Start timer only if there are multiple slides
+    if (slides.length > 1) {
+        timer = setInterval(nextSlide, 4000);
+    }
 });
-
-prev.addEventListener("click", () => {
-  prevSlide();
-  resetTimer();
-});
-
-timer = setInterval(nextSlide, 4000);
 
 function showSidebar() {
     const sidebar = document.querySelector('.navlinks-sidebar')
