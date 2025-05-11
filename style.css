@@ -408,48 +408,8 @@ body {
 
 /* Tablet */
 @media screen and (max-width: 1023px) {
-    .banner-3d .slider-3d {
-        width: 250px;
-        height: 140px;
-        left: calc(50% - 125px);
-    }
-
-    .banner-3d .slider-3d .item-3d {
-        transform: rotateY(var(--angle)) translateZ(400px);
-    }
-
-
-    .banner-3d .content-3d .author-3d {
-        color: black;
-        text-shadow: 0 10px 20px #000;
-        z-index: 2;
-        max-width: unset;
-        width: 100%;
-        text-align: center;
-        padding: 0 30px;
-		font-size: 4vw;
-    }
-	.banner-3d .content-3d .model-3d {
-		height: 500px;
-		width: 500px;
-		padding: 30px;
-	}
+    .banner-3d {
+	display: none;
 }
 
-/* Mobile */
-@media screen and (max-width: 767px) {
-    .banner-3d .slider-3d {
-        width: 180px;
-        height: 100px;
-        left: calc(50% - 90px);
-    }
-
-    .banner-3d .slider-3d .item-3d {
-        transform: rotateY(var(--angle)) translateZ(280px);
-    }
-
-    .banner-3d .content-3d h1 {
-        font-size: 5em;
-    }
-}
 	
