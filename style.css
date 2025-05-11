@@ -406,10 +406,21 @@ body {
     z-index: 1;
 }
 
+
 /* Tablet */
-@media screen and (max-width: 1023px) {
-    .banner-3d {
+@media screen and (max-width: 1023px){.banner-3d {
 	display: none;
 }
+}
 
+.logot{
+  border: 0;
+  font-size: 60px;
+  width: 500px;
+  text-align: center;
+}
+.logot :first-child:last-child{
+  border: 0px;
+  border-radius: 10%;
+}
 	
