@@ -29,7 +29,6 @@ body {
 .logo-container {
   display: inline-flex;
   align-items: left;
-  
 }
 
 .logo {
@@ -56,7 +55,6 @@ body {
 .subtitle {
   font-size: clamp(8px, 3vw, 20px);
   align-self: flex-front;
-  
   color: white;
 }
 
@@ -64,54 +62,117 @@ body {
   display: flex;
   gap: 1vw;
   margin-right: -27px;
-  
 }
 
+/* Updated Navigation Links with Purple/Blue/Pink Glow */
 .nav-links a {
   color: white;
   text-decoration: none;
   font-size: clamp(7px, 3vw, 20px);
   position: relative;
-  transition: color 0.3s ease;
-  padding: clamp(1px, 2vw, 4px);
-}
-.nav-links a:hover {
-  background: rgba(128, 128, 128, 0.5);
-  border: border-box;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
   border-radius: 5px;
-  backdrop-filter: blur(8px);
+  overflow: hidden;
+  z-index: 1;
 }
 
-.nav-links a::after {
+/* Updated with deeper blues and pinks - 70% blue, 20% purple, 10% pink */
+.nav-links a::before,
+.navlinks-sidebar a::before {
   content: "";
   position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -5px;
-  left: 0;
-  background-color: white;
-  transition: width 0.3s;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  background: linear-gradient(45deg,
+    #0000ff,  /* Deep Navy Blue (35%) */
+    #00008b,  /* Dark Blue (35%) */
+    #4b0082,  /* Indigo (10%) - Deep Purple */
+    #800080,  /* Purple (10%) */
+    #ff1493,  /* Deep Pink (5%) */
+    #c71585,  /* Medium Violet Red (5%) */
+    #0000ff   /* Cycle back to blue */
+  );
+  background-size: 300%;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.nav-links a:hover::after {
-  width: 100%;
+.nav-links a:hover::before,
+.navlinks-sidebar a:hover::before {
+  opacity: 1;
+  animation: colorFlow 6s linear infinite;
 }
 
-.glass-panel {
+@keyframes colorFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+.glass-container {
+  position: relative;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid transparent; /* Make default border transparent */
   color: white;
   text-align: center;
   margin: 20px auto;
   width: 90vw;
   max-width: 495px;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   font-size: clamp(9px, 4vw, 24px);
-  
+  overflow: hidden; /* For pseudo-element */
+}
+
+/* Glowing Border Effect */
+.glass-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  background: linear-gradient(45deg,
+    #0000ff,  /* Deep Blue */
+    #00008b,  /* Dark Blue */
+    #4b0082,  /* Indigo */
+    #800080,  /* Purple */
+    #ff1493,  /* Deep Pink */
+    #c71585,  /* Medium Violet Red */
+    #0000ff   /* Cycle back */
+  );
+  background-size: 300%;
+  border-radius: 18px; /* Slightly larger than panel */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.glass-container:hover::before {
+  opacity: 0.7;
+  animation: colorFlow 8s linear infinite;
+}
+
+/* Keyframes remain the same as before */
+@keyframes colorFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 .slider-container {
@@ -151,6 +212,7 @@ body {
   transform: translateX(0);
   z-index: 1;
 }
+
 .slide img {
   width: 100%;
   height: 100%;
@@ -184,7 +246,7 @@ body {
   right: clamp(6px, 4vw, 16px);
 }
 
-.navlinks-sidebar{
+.navlinks-sidebar {
   position: fixed;
   top: 0;
   right: 0;
@@ -207,210 +269,213 @@ body {
   text-decoration: none;
   font-size: clamp(7px, 3vw, 20px);
   position: relative;
-  transition: color 0.3s ease;
-  padding: clamp(4px, 2vw, 10px);
+  transition: all 0.3s ease;
+  padding: 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.navlinks-sidebar a::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  background: linear-gradient(45deg, 
+    #8a2be2, #4b0082, #9932cc, #9400d3, 
+    #da70d6, #ff69b4, #db7093, #8a2be2);
+  background-size: 300%;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.navlinks-sidebar a:hover::before {
+  opacity: 1;
+  animation: colorFlow 6s linear infinite;
 }
 
 .navlinks-sidebar a:hover {
   background: rgba(128, 128, 128, 0.5);
-  border: border-box;
-  border-radius: 2px;
   backdrop-filter: blur(6px);
 }
 
-.menuButton{
-	display: none;
+.menuButton {
+  display: none;
 }
 
-
-
 @media(max-width: 900px) {
-	.hideOnMobile{
-		display: none;
-	}
-		.menuButton{
-		display: block;
-	}
+  .hideOnMobile {
+    display: none;
+  }
+  .menuButton {
+    display: block;
+  }
 }
 
 @media(max-width: 370px) {
-	.navlinks-sidebar{
-		width: 100%;
-	}
+  .navlinks-sidebar {
+    width: 100%;
+  }
 }
 
 .wrapper {
-	padding: 0 15px;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-	gap: 4rem;
+  padding: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
 }
 
 .intro {
-	flex: 1;
-	font-size: clamp(10px, 5vw, 30px);
+  flex: 1;
+  font-size: clamp(10px, 5vw, 30px);
 }
 
-
-
-.glass-container {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  text-align: center;
-  margin: 20px auto;
-  width: 90vw;
-  max-width: 495px;
-  box-sizing: border-box; 
-  font-size: clamp(9px, 4vw, 24px);
-}
 
 .trapper {
-	padding: 0 15px;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-	gap: 4rem;
+  padding: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
 }
 
 .ictob-intro {
-	font-size: 20px;
-	flex: 1;
+  font-size: 20px;
+  flex: 1;
 }
-	
+  
 .page {
-    display: none;
-    animation: fadeIn 0.5s ease-in-out;
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .page.active {
-    display: block;
+  display: block;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .nav-link.active {
-    background: rgba(128, 128, 128, 0.5);
-    border-radius: 5px;
-    backdrop-filter: blur(8px);
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 5px;
+  backdrop-filter: blur(8px);
 }
 
 .banner-3d {
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
 }
 
 .banner-3d::before {
-    position: absolute;
-    width: min(1400px, 90vw);
-    top: 10%;
-    left: 50%;
-    height: 90%;
-    transform: translateX(-50%);
-    content: '';
-    pointer-events: none;
+  position: absolute;
+  width: min(1400px, 90vw);
+  top: 10%;
+  left: 50%;
+  height: 90%;
+  transform: translateX(-50%);
+  content: '';
+  pointer-events: none;
 }
 
 .banner-3d .slider-3d {
-    position: absolute;
-    width: 320px;
-    height: 180px;
-    top: 10%;
-    left: calc(50% - 160px);
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
-    animation: autoRun 20s linear infinite;
-    z-index: 2;
+  position: absolute;
+  width: 320px;
+  height: 180px;
+  top: 10%;
+  left: calc(50% - 160px);
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  animation: autoRun 20s linear infinite;
+  z-index: 2;
 }
 
 @keyframes autoRun {
-    from {
-        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
-    }
-    to {
-        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
-    }
+  from {
+    transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+  }
 }
 
 .banner-3d .slider-3d .item-3d {
-    position: absolute;
-    inset: 0;
-    transform: rotateY(var(--angle)) translateZ(600px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  inset: 0;
+  transform: rotateY(var(--angle)) translateZ(600px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 .banner-3d .slider-3d .item-3d img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 16px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 16px;
 }
 
 .banner-3d .content-3d {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(1400px, 100vw);
-    height: max-content;
-    padding-bottom: 100px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1400px, 100vw);
+  height: max-content;
+  padding-bottom: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
 }
 
-
 .banner-3d .content-3d .author-3d {
-    font-family: Poppins;
-    text-align: right;
-    max-width: 200px;
+  font-family: Poppins;
+  text-align: right;
+  max-width: 200px;
 }
 
 .banner-3d .content-3d h2 {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 .banner-3d .content-3d .model-3d {
-    background-image: url(logo.png);
-    border-radius: 50%;
-    width: 75vh;
-    height: 75vh;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 1;
+  background-image: url(logo.png);
+  border-radius: 50%;
+  width: 75vh;
+  height: 75vh;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
 }
-
 
 /* Tablet */
-@media screen and (max-width: 1023px){.banner-3d {
-	display: none;
-}
+@media screen and (max-width: 1023px) {
+  .banner-3d {
+    display: none;
+  }
 }
 
 .logot{
@@ -423,4 +488,3 @@ body {
   border: 0px;
   border-radius: 10%;
 }
-	
