@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTRA - Cyber Interface</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff00e6;
+            --accent: #7700ff;
+            --bg-dark: #0a0a12;
+            --text-glow: 0 0 10px currentColor;
+            --error: #ff1b4d;
+            --success: #00ff88;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            overflow: hidden;
+            font-family: 'Orbitron', 'Rajdhani', sans-serif;
+            color: var(--primary);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: 
+                linear-gradient(rgba(0, 247, 255, 0.03) 0%, transparent 50%),
+                linear-gradient(rgba(255, 0, 230, 0.03) 100%),
+                radial-gradient(circle at 20% 30%, rgba(119, 0, 255, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(0, 247, 255, 0.1) 0%, transparent 25%);
+        }
+
+        .hologram-container {
+            position: relative;
+            width: 80vmin;
+            height: 80vmin;
+            max-width: 600px;
+            max-height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hologram-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            mix-blend-mode: screen;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+
+        .circle-1 {
+            width: 100%;
+            height: 100%;
+            border-color: var(--primary);
+            animation: rotate 60s infinite, pulse-opacity 8s infinite;
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.3);
+        }
+
+        .circle-2 {
+            width: 80%;
+            height: 80%;
+            border-color: var(--secondary);
+            animation: rotate-reverse 45s infinite, pulse-opacity 12s infinite 2s;
+            box-shadow: 0 0 30px rgba(255, 0, 230, 0.3);
+        }
+
+        .circle-3 {
+            width: 60%;
+            height: 60%;
+            border-color: var(--accent);
+            animation: rotate 30s infinite, pulse-opacity 15s infinite 4s;
+            box-shadow: 0 0 30px rgba(119, 0, 255, 0.3);
+        }
+
+        .hologram-core {
+            position: relative;
+            width: 40%;
+            height: 40%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 247, 255, 0.2) 0%, transparent 70%);
+            z-index: 10;
+            transition: all 0.3s ease;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.2);
+        }
+
+        .voice-active .hologram-core {
+            background: radial-gradient(circle, rgba(0, 247, 255, 0.4) 0%, transparent 70%);
+            box-shadow: 0 0 50px rgba(0, 247, 255, 0.4);
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .interface-panel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .status-container {
+            position: absolute;
+            top: 5%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .status {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.7;
+            background: rgba(10, 10, 18, 0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+            transition: all 0.3s ease;
+            text-shadow: var(--text-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(0, 247, 255, 0.2) 50%, 
+                transparent 100%);
+            animation: statusShine 3s infinite;
+            opacity: 0;
+        }
+
+        .status.processing::after {
+            opacity: 1;
+        }
+
+        .status.error {
+            border-color: var(--error);
+            color: var(--error);
+            box-shadow: 0 0 10px rgba(255, 27, 77, 0.3);
+            text-shadow: 0 0 10px var(--error);
+        }
+
+        .status.active {
+            border-color: var(--success);
+            color: var(--success);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+            text-shadow: 0 0 10px var(--success);
+        }
+
+        .controls-container {
+            position: absolute;
+            bottom: 5%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mic-btn {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 20;
+            opacity: 0.9;
+            pointer-events: auto;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            outline: none;
+            text-shadow: var(--text-glow);
+            position: relative;
+            overflow: hidden;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .mic-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(0, 247, 255, 0.1) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+
+        .mic-btn:hover::before {
+            animation: buttonShine 1.5s infinite;
+            opacity: 1;
+        }
+
+        .mic-btn:hover {
+            opacity: 1;
+            background: rgba(0, 247, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .mic-btn.active {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            box-shadow: 0 0 15px rgba(255, 0, 230, 0.3);
+            text-shadow: 0 0 10px var(--secondary);
+        }
+
+        .mic-btn.error {
+            border-color: var(--error);
+            color: var(--error);
+            box-shadow: 0 0 15px rgba(255, 27, 77, 0.3);
+            text-shadow: 0 0 10px var(--error);
+        }
+
+        .mic-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .response-display {
+            width: 85%;
+            min-height: 4em;
+            background: rgba(10, 10, 18, 0.7);
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--secondary);
+            box-shadow: 0 0 15px rgba(119, 0, 255, 0.2);
+            overflow: hidden;
+            pointer-events: auto;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .permission-error {
+            color: var(--error);
+            position: absolute;
+            bottom: 20%;
+            width: 100%;
+            text-align: center;
+            font-size: 0.8rem;
+            display: none;
+            background: rgba(10, 10, 18, 0.9);
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid var(--error);
+            pointer-events: none;
+            animation: fadeInOut 5s ease-in-out;
+            text-shadow: 0 0 5px var(--error);
+        }
+
+        .system-title {
+            position: absolute;
+            top: 15%;
+            width: 100%;
+            text-align: center;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--primary);
+            text-shadow: 0 0 15px var(--primary);
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .wake-hint {
+            position: absolute;
+            top: 25%;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--secondary);
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 5px var(--secondary);
+            animation: pulse-opacity 3s infinite;
+        }
+
+        .cyber-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 247, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 247, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .permission-prompt {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 10, 18, 0.95);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 20px rgba(119, 0, 255, 0.5);
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            z-index: 100;
+            display: none;
+        }
+
+        .permission-prompt h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .permission-prompt p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        .permission-btn {
+            background: rgba(0, 247, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .permission-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(0, 247, 255, 0.1) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+
+        .permission-btn:hover::before {
+            animation: buttonShine 1.5s infinite;
+            opacity: 1;
+        }
+
+        .permission-btn:hover {
+            background: rgba(0, 247, 255, 0.2);
+        }
+
+        .permission-btn.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .permission-btn.primary:hover {
+            background: var(--secondary);
+            border-color: var(--secondary);
+        }
+
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes rotate-reverse {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+
+        @keyframes pulse-opacity {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            20%, 80% { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes statusShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes buttonShine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 5px currentColor; }
+            50% { text-shadow: 0 0 15px currentColor; }
+        }
+
+        @media (max-width: 768px) {
+            .hologram-container {
+                width: 95vmin;
+                height: 95vmin;
+            }
+            
+            .system-title {
+                font-size: 1.8rem;
+                top: 12%;
+            }
+            
+            .wake-hint {
+                top: 22%;
+                font-size: 0.8rem;
+            }
+            
+            .response-display {
+                width: 90%;
+                font-size: 0.85rem;
+                min-height: 3.5em;
+            }
+            
+            .mic-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+                min-width: 180px;
+            }
+            
+            .permission-prompt {
+                width: 90%;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    <div class="hologram-container" id="container">
+        <div class="interface-panel">
+            <div class="system-title">ASTRA AI</div>
+            <div class="wake-hint" id="wake-hint">Say "ACTIVATE" to begin</div>
+            
+            <div class="status-container">
+                <div class="status" id="status">SYSTEM STANDBY</div>
+            </div>
+            
+            <div class="hologram-circle circle-1"></div>
+            <div class="hologram-circle circle-2"></div>
+            <div class="hologram-circle circle-3"></div>
+            
+            <div class="hologram-core" id="core"></div>
+            
+            <div class="controls-container">
+                <div class="response-display" id="response">
+                    Initializing system...
+                </div>
+                <button class="mic-btn" id="mic-btn">INITIALIZE SYSTEM</button>
+            </div>
+            
+            <div class="permission-error" id="permission-error">
+                Microphone permission denied. Please allow microphone access in your browser settings.
+            </div>
+        </div>
+        
+        <div class="permission-prompt" id="permission-prompt">
+            <h3>Microphone Access Required</h3>
+            <p>ASTRA needs microphone permission to respond to voice commands. Your audio data is processed locally and not stored.</p>
+            <div>
+                <button class="permission-btn" id="deny-btn">DENY</button>
+                <button class="permission-btn primary" id="allow-btn">ALLOW</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Groq API Configuration
+        const GROQ_API_KEY = "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";
+        const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
+        const GROQ_MODEL = "llama3-70b-8192";
+        
+        // Conversation history
+        let conversationHistory = [
+            {
+                role: "system",
+                content: `You are ASTRA, an advanced AI assistant. Follow these rules strictly:
+                1. Respond concisely (25-30 words max unless more is requested)
+                2. Provide only factual, verified information
+                3. Never generate code or fictional data
+                4. Avoid religion and politics completely
+                5. Maintain professional, neutral tone
+                6. Remember previous conversation context
+                7. If asked about restricted topics, reply: "I don't discuss that topic"
+                8. Speak in a clear, male voice`
+            }
+        ];
+        
+        // DOM Elements
+        const container = document.getElementById('container');
+        const core = document.getElementById('core');
+        const responseEl = document.getElementById('response');
+        const statusEl = document.getElementById('status');
+        const micBtn = document.getElementById('mic-btn');
+        const permissionError = document.getElementById('permission-error');
+        const wakeHint = document.getElementById('wake-hint');
+        const permissionPrompt = document.getElementById('permission-prompt');
+        const allowBtn = document.getElementById('allow-btn');
+        const denyBtn = document.getElementById('deny-btn');
+        
+        // Check if speech recognition is available
+        const isSpeechSupported = ('webkitSpeechRecognition' in window) || ('SpeechRecognition' in window);
+        
+        if (!isSpeechSupported) {
+            responseEl.textContent = "Speech recognition not supported in your browser";
+            micBtn.disabled = true;
+            micBtn.textContent = "UNSUPPORTED";
+            micBtn.classList.add('error');
+            updateStatus("BROWSER INCOMPATIBLE", true);
+        }
+        
+        // Speech Recognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition;
+        
+        if (isSpeechSupported) {
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+        }
+        
+        // Speech Synthesis
+        const synth = window.speechSynthesis;
+        let speechQueue = [];
+        let isSpeaking = false;
+        
+        // State
+        let isActive = false;
+        let isProcessing = false;
+        const wakeWord = "activate";
+        const standbyWord = "deactivate";
+        let permissionGranted = false;
+        let initialized = false;
+        let permissionRequested = false;
+        
+        // Functions
+        function updateStatus(text, isError = false, isProcessing = false) {
+            statusEl.textContent = text;
+            statusEl.className = 'status'; // Reset classes
+            
+            if (isError) {
+                statusEl.classList.add('error');
+            } else if (isProcessing) {
+                statusEl.classList.add('processing');
+            } else if (text === "ACTIVE" || text === "SYSTEM READY") {
+                statusEl.classList.add('active');
+            }
+            
+            if ((text === "LISTENING" || text === "AWAITING COMMAND") && !isError) {
+                statusEl.style.animation = "pulse-opacity 2s infinite";
+            } else {
+                statusEl.style.animation = "none";
+            }
+        }
+        
+        function updateResponse(text) {
+            responseEl.textContent = text;
+            // Add border highlight animation
+            responseEl.style.borderColor = "var(--secondary)";
+            setTimeout(() => {
+                responseEl.style.borderColor = "var(--accent)";
+            }, 500);
+        }
+        
+        function showPermissionError() {
+            permissionError.style.display = 'block';
+            setTimeout(() => {
+                permissionError.style.display = 'none';
+            }, 5000);
+        }
+        
+        function showPermissionPrompt() {
+            permissionPrompt.style.display = 'block';
+        }
+        
+        function hidePermissionPrompt() {
+            permissionPrompt.style.display = 'none';
+        }
+        
+        function processSpeechQueue() {
+            if (speechQueue.length === 0 || isSpeaking) return;
+            
+            isSpeaking = true;
+            const { text, onEnd } = speechQueue.shift();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 1.0;
+            utterance.pitch = 0.9;
+            utterance.volume = 1.0;
+            
+            // Find a suitable voice
+            const voices = synth.getVoices();
+            if (voices.length > 0) {
+                // Try to find a male voice first
+                const maleVoice = voices.find(voice => 
+                    voice.name.toLowerCase().includes('male') || 
+                    voice.name.toLowerCase().includes('man')
+                );
+                
+                utterance.voice = maleVoice || voices[0];
+            }
+            
+            container.classList.add('voice-active');
+            utterance.onend = () => {
+                container.classList.remove('voice-active');
+                isSpeaking = false;
+                if (onEnd) onEnd();
+                processSpeechQueue();
+                
+                if (!isSpeaking && isActive && !isProcessing) {
+                    setTimeout(() => {
+                        try {
+                            recognition.start();
+                        } catch (e) {
+                            console.error("Error restarting recognition:", e);
+                        }
+                    }, 100); // Reduced delay
+                }
+            };
+            
+            utterance.onerror = (event) => {
+                console.error("Speech synthesis error:", event);
+                container.classList.remove('voice-active');
+                isSpeaking = false;
+                if (onEnd) onEnd();
+                processSpeechQueue();
+            };
+            
+            synth.speak(utterance);
+        }
+        
+        function speak(text, onEnd) {
+            if (!text || typeof text !== 'string') return;
+            
+            speechQueue.push({ text, onEnd });
+            if (!isSpeaking) {
+                processSpeechQueue();
+            }
+        }
+        
+        function shouldBlockResponse(prompt) {
+            const blockedTopics = [
+                'religion', 'god', 'allah', 'jesus', 'bible', 'quran',
+                'politics', 'democrat', 'republican', 'election', 'trump', 'biden',
+                'code', 'programming', 'script', 'function', 'algorithm'
+            ];
+            
+            return blockedTopics.some(topic => 
+                prompt.toLowerCase().includes(topic)
+            );
+        }
+        
+        async function queryAI(prompt) {
+            if (!prompt || typeof prompt !== 'string') return "Invalid input";
+            
+            updateStatus("PROCESSING", false, true);
+            updateResponse("Processing request...");
+            
+            // Add user message to history
+            conversationHistory.push({
+                role: "user",
+                content: prompt
+            });
+
+            try {
+                // Check for blocked topics
+                if (shouldBlockResponse(prompt)) {
+                    return "I don't discuss that topic.";
+                }
+
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 1000); // 1 second timeout
+                
+                const response = await fetch(GROQ_API_URL, {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${GROQ_API_KEY}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        model: GROQ_MODEL,
+                        messages: conversationHistory,
+                        temperature: 0.3,
+                        max_tokens: 100
+                    }),
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    if (response.status === 429) {
+                        throw new Error("API rate limit exceeded");
+                    } else if (response.status === 401) {
+                        throw new Error("Invalid API key");
+                    }
+                    throw new Error(errorData.error?.message || "API error");
+                }
+                
+                const data = await response.json();
+                const aiResponse = data.choices[0].message.content.trim();
+                
+                // Add AI response to history (keeping last 6 exchanges)
+                conversationHistory.push({
+                    role: "assistant",
+                    content: aiResponse
+                });
+                
+                if (conversationHistory.length > 6) {
+                    conversationHistory = conversationHistory.slice(-6);
+                }
+                
+                return aiResponse;
+
+            } catch (error) {
+                console.error("AI Error:", error);
+                if (prompt.includes("hello") || prompt.includes("hi")) {
+                    return "Hello! I'm having temporary connection issues.";
+                }
+                if (prompt.includes("time")) {
+                    return `The current time is ${new Date().toLocaleTimeString()}`;
+                }
+                return `System error: ${error.message}. Please try again later.`;
+            }
+        }
+        
+        function requestMicrophonePermission() {
+            updateStatus("REQUESTING PERMISSION", false, true);
+            updateResponse("Please allow microphone access...");
+            micBtn.disabled = true;
+            micBtn.textContent = "CHECKING...";
+            
+            // Show visual feedback
+            container.classList.add('voice-active');
+            
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    // Immediately stop using the stream (we just needed permission)
+                    stream.getTracks().forEach(track => track.stop());
+                    
+                    permissionGranted = true;
+                    initialized = true;
+                    
+                    micBtn.textContent = "SYSTEM READY";
+                    micBtn.classList.add('active');
+                    micBtn.disabled = true;
+                    
+                    updateStatus("STANDBY");
+                    updateResponse("Say 'ACTIVATE' to begin");
+                    wakeHint.style.display = 'block';
+                    
+                    // Start listening for wake word
+                    try {
+                        recognition.start();
+                    } catch (e) {
+                        console.error("Error starting recognition:", e);
+                        updateStatus("STARTUP ERROR", true);
+                        updateResponse("Failed to start voice recognition");
+                        micBtn.textContent = "RETRY";
+                        micBtn.disabled = false;
+                    }
+                    
+                    container.classList.remove('voice-active');
+                })
+                .catch(error => {
+                    console.error("Microphone permission error:", error);
+                    permissionGranted = false;
+                    initialized = false;
+                    
+                    container.classList.remove('voice-active');
+                    
+                    if (error.name === 'NotAllowedError') {
+                        showPermissionError();
+                        updateStatus("PERMISSION DENIED", true);
+                        updateResponse("Microphone access required");
+                        micBtn.textContent = "ALLOW MICROPHONE";
+                        micBtn.classList.add('error');
+                    } else {
+                        updateStatus("MICROPHONE ERROR", true);
+                        updateResponse("Could not access microphone");
+                        micBtn.textContent = "TRY AGAIN";
+                        micBtn.classList.add('error');
+                    }
+                    
+                    micBtn.disabled = false;
+                });
+        }
+        
+        function initializeSystem() {
+            if (permissionRequested || !isSpeechSupported) return;
+            
+            permissionRequested = true;
+            
+            // Check if we already have permission
+            navigator.permissions && navigator.permissions.query({ name: 'microphone' })
+                .then(permissionStatus => {
+                    if (permissionStatus.state === 'granted') {
+                        requestMicrophonePermission();
+                    } else {
+                        // Show permission prompt
+                        showPermissionPrompt();
+                    }
+                })
+                .catch(() => {
+                    // Browser doesn't support permissions API, proceed directly
+                    showPermissionPrompt();
+                });
+        }
+        
+        // Event Handlers
+        if (isSpeechSupported) {
+            recognition.onstart = () => {
+                if (!initialized) return;
+                
+                if (isActive && !isProcessing) {
+                    updateStatus("AWAITING COMMAND");
+                } else if (!isProcessing) {
+                    updateStatus("LISTENING FOR WAKE WORD");
+                }
+                
+                container.classList.add('voice-active');
+                core.style.transform = "translate(-50%, -50%) scale(1.1)";
+            };
+            
+            recognition.onend = () => {
+                container.classList.remove('voice-active');
+                core.style.transform = "translate(-50%, -50%) scale(1)";
+                
+                if (isActive && initialized && !isProcessing && !isSpeaking) {
+                    setTimeout(() => {
+                        try {
+                            recognition.start();
+                        } catch (e) {
+                            console.error("Error restarting recognition:", e);
+                        }
+                    }, 100); // Reduced delay
+                }
+            };
+            
+            recognition.onresult = async (event) => {
+                if (isProcessing || !event.results || event.results.length === 0) return;
+                
+                const result = event.results[event.results.length - 1];
+                if (!result || result.length === 0) return;
+                
+                const transcript = result[0].transcript.toLowerCase().trim();
+                console.log("Detected speech:", transcript);
+                
+                if (!isActive) {
+                    if (transcript.includes(wakeWord)) {
+                        isActive = true;
+                        wakeHint.style.display = 'none';
+                        updateStatus("ACTIVE");
+                        updateResponse("Systems online");
+                        speak("Activated. How may I assist?", () => {
+                            isProcessing = false;
+                            updateStatus("AWAITING COMMAND");
+                        });
+                    }
+                } else {
+                    if (transcript.includes(standbyWord)) {
+                        isActive = false;
+                        updateResponse("System deactivated");
+                        updateStatus("STANDBY");
+                        wakeHint.style.display = 'block';
+                        speak("Deactivating. Goodbye.");
+                        return;
+                    }
+                    
+                    // Only show responses for non-command inputs
+                    if (!transcript.includes(wakeWord) && !transcript.includes(standbyWord)) {
+                        isProcessing = true;
+                        const aiResponse = await queryAI(transcript);
+                        updateResponse(aiResponse);
+                        speak(aiResponse, () => {
+                            isProcessing = false;
+                            updateStatus("AWAITING COMMAND");
+                        });
+                    }
+                }
+            };
+            
+            recognition.onerror = (event) => {
+                console.error("Speech error:", event.error);
+                
+                if (event.error === 'not-allowed') {
+                    showPermissionError();
+                    updateStatus("PERMISSION DENIED", true);
+                    updateResponse("Microphone access required");
+                    micBtn.textContent = "ALLOW MICROPHONE";
+                    micBtn.classList.add('error');
+                    micBtn.disabled = false;
+                    initialized = false;
+                    permissionRequested = false;
+                } else if (event.error === 'no-speech') {
+                    if (isActive && !isProcessing) {
+                        setTimeout(() => {
+                            try {
+                                recognition.start();
+                            } catch (e) {
+                                console.error("Error restarting recognition:", e);
+                            }
+                        }, 100); // Reduced delay
+                    }
+                } else {
+                    updateStatus("ERROR: " + event.error, true);
+                }
+                
+                container.classList.remove('voice-active');
+            };
+        }
+        
+        micBtn.addEventListener('click', initializeSystem);
+        allowBtn.addEventListener('click', () => {
+            hidePermissionPrompt();
+            requestMicrophonePermission();
+        });
+        denyBtn.addEventListener('click', () => {
+            hidePermissionPrompt();
+            updateStatus("PERMISSION REQUIRED", true);
+            updateResponse("Microphone access is required");
+            micBtn.textContent = "ALLOW MICROPHONE";
+            micBtn.classList.add('error');
+            micBtn.disabled = false;
+            permissionRequested = false;
+        });
+        
+        // Initialization
+        updateStatus("SYSTEM STANDBY");
+        updateResponse(isSpeechSupported ? "Click button to initialize system" : "Voice commands not supported");
+        wakeHint.style.display = 'none';
+        
+        // Load voices for speech synthesis
+        function loadVoices() {
+            return new Promise(resolve => {
+                const voices = synth.getVoices();
+                if (voices.length > 0) {
+                    resolve(voices);
+                } else {
+                    synth.onvoiceschanged = () => {
+                        resolve(synth.getVoices());
+                    };
+                }
+            });
+        }
+        
+        if (isSpeechSupported) {
+            loadVoices().then(voices => {
+                console.log("Voices loaded:", voices);
+            });
+        }
+        
+        // Mobile responsiveness
+        function handleResize() {
+            const isMobile = window.innerWidth <= 768;
+            container.style.width = isMobile ? "95vmin" : "80vmin";
+            container.style.height = isMobile ? "95vmin" : "80vmin";
+        }
+        
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Initialize on load
+        
+        // Check if we already have permission (for page reloads)
+        document.addEventListener('DOMContentLoaded', () => {
+            if (isSpeechSupported) {
+                navigator.permissions && navigator.permissions.query({ name: 'microphone' })
+                    .then(permissionStatus => {
+                        if (permissionStatus.state === 'granted') {
+                            permissionGranted = true;
+                            initialized = true;
+                            micBtn.textContent = "SYSTEM READY";
+                            micBtn.classList.add('active');
+                            micBtn.disabled = true;
+                            updateStatus("STANDBY");
+                            updateResponse("Say 'ACTIVATE' to begin");
+                            wakeHint.style.display = 'block';
+                            
+                            try {
+                                recognition.start();
+                            } catch (e) {
+                                console.error("Error starting recognition:", e);
+                            }
+                        }
+                    })
+                    .catch(() => {
+                        // Permissions API not supported, continue normally
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
