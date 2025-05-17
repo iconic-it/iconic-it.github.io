@@ -31,7 +31,7 @@
                 <a href="#" class="nav-link" data-page="home">Home</a>
                 <a href="#" class="nav-link" data-page="events">Events</a>
                 <a href="#" class="nav-link" data-page="gallery">Gallery</a>
-                <a href="#" class="nav-link" data-page="contact">Conatact</a>
+                <a href="#" class="nav-link" data-page="contact">Contact</a>
             </nav>
             <nav class="nav-links">
                 <div class="hideOnMobile">
@@ -260,8 +260,8 @@
                         </ul>
 			<p style="text-transform: capitalize;">reach us through social media:</p>
                         <div class="logot">
-                            <a target="_blank" href="https://www.facebook.com/iitc.bafsk"><i class="fa-brands fa-square-facebook"></i></a>
-                            <a target="_blank" href=""><i class="fa-brands fa-square-instagram"></i></a>
+                            <a href="https://www.facebook.com/iitc.bafsk"><i class="fa-brands fa-square-facebook"></i></a>
+                            <a href=""><i class="fa-brands fa-square-instagram"></i></a>
                         </div>
                     </div>
                 </div>
@@ -269,5 +269,35 @@
         </main>
 
         <script src="script.js" defer></script>
+		
+		<script>
+		(function(){
+			if(!window.chatbase || window.chatbase("getState") !== "initialized"){
+				window.chatbase = (...arguments) => {
+					if (!window.chatbase.q) { window.chatbase.q = [] }
+					window.chatbase.q.push(arguments)
+				};
+				window.chatbase = new Proxy(window.chatbase, {
+					get(target, prop) {
+						if (prop === "q") return target.q;
+						return (...args) => target(prop, ...args)
+					}
+				});
+			}
+			const onLoad = function() {
+				const script = document.createElement("script");
+				script.src = "https://www.chatbase.co/embed.min.js";
+				script.id = "C97rYhlKJQtLf1fIS0Pg_";
+				script.domain = "www.chatbase.co";
+				document.body.appendChild(script);
+			};
+			if (document.readyState === "complete") {
+				onLoad();
+			} else {
+				window.addEventListener("load", onLoad);
+			}
+		})();
+		</script>
+
     </body>
 </html>
