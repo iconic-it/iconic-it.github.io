@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ICONIC IT CLUB</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/ica-rubrik-black" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="icon" type="image/png" href="logo.png">
+
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo-glass">
+            <img src="logo.png" alt="IITC Logo" class="logo-img" loading="lazy">
+            <span class="logo-text">IITC</span>
+        </div>
+    </div>
+    
+    <div class="floating-nav">
+        <a href="#" class="nav-link active" data-page="home">Home</a>
+		<a href="#" class="nav-link" data-page="about">About</a>
+        <a href="#" class="nav-link" data-page="events">Events</a>
+        <a href="#" class="nav-link" data-page="contact">Contact</a>
+		<a href="#" class="nav-link" data-page="membership">Membership</a>
+    </div>
+	
+		<div class="mobile-menu-btn">
+		<i class="fas fa-bars"></i>
+	</div>
+
+	<div class="mobile-menu-overlay">
+		<div class="mobile-menu-content">
+			<div class="mobile-menu-header">
+				<div class="mobile-logo">
+					<img src="logo.png" alt="IITC Logo" class="logo-img">
+					<span class="logo-text">IITC</span>
+				</div>
+				<button class="mobile-menu-close">
+					<i class="fas fa-times"></i>
+				</button>
+			</div>
+			<div class="mobile-nav-links">
+				<a href="#" class="mobile-nav-link active" data-page="home">Home</a>
+				<a href="#" class="mobile-nav-link" data-page="about">About</a>
+				<a href="#" class="mobile-nav-link" data-page="events">Events</a>
+				<a href="#" class="mobile-nav-link" data-page="contact">Contact</a>
+				<a href="#" class="mobile-nav-link" data-page="membership">Membership</a>
+			</div>
+		</div>
+	</div>
+	
+	
+    <main id="content">
+<div id="home-page" class="page active">
+    <!-- Custom Slider -->
+<div class="slider-wrapper">
+    <div class="carousel">
+
+        <div class="list">
+
+            <div class="item" style="background-image: url('t2.jpg');">
+                <div class="content">
+                    <div class="title">ICONIC IT CLUB</div>
+                    <div class="name">Empowering Tech Innovators</div>
+                    <div class="des">Join a community dedicated to exploring the latest in technology, from coding and design to AI and cybersecurity.</div>
+                    <div class="btn">
+                        <button onclick="navigateToPage('about')">Learn More</button>
+                        <button onclick="navigateToPage('membership')">Join Us</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item" style="background-image: url('asset1.jpg');">
+                <div class="content">
+                    <div class="title">Collaboration</div>
+                    <div class="name">Join Our Community</div>
+                    <div class="des">Work on exciting projects, participate in workshops, and grow your skills with fellow tech enthusiasts.</div>
+                    <div class="btn">
+                        <button onclick="navigateToPage('membership')">Get Membership</button>
+                        <button onclick="navigateToPage('contact')">Contact Us</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item" style="background-image: url('Events/ICTOBS2/2.jpg');">
+                <div class="content">
+                    <div class="title">Achievement</div>
+                    <div class="name">ICT Olympiad Champions</div>
+                    <div class="des">Celebrating our victory and continued excellence in competitive programming and technology contests.</div>
+                    <div class="btn">
+                        <button onclick="navigateToPage('events')">View Events</button>
+                        <button onclick="navigateToPage('about')">Our Team</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item" style="background-image: url('asset2.jpg');">
+                <div class="content">
+                    <div class="title">Innovation</div>
+                    <div class="name">Build The Future</div>
+                    <div class="des">From web development to machine learning, we provide the resources and support to turn your ideas into reality.</div>
+                    <div class="btn">
+                        <button onclick="navigateToPage('about')">Our Projects</button>
+                        <button onclick="navigateToPage('membership')">Join The Club</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="item" style="background-image: url('asset3.jpg');">
+                 <div class="content">
+                    <div class="title">Get In Touch</div>
+                    <div class="name">We Want To Hear From You</div>
+                    <div class="des">Have questions or ideas? Reach out to our team and get involved with the club's activities.</div>
+                    <div class="btn">
+                        <button onclick="navigateToPage('contact')">Contact Us</button>
+                        <button onclick="navigateToPage('about')">About Us</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="arrows">
+            <button class="prev"><</button>
+            <button class="next">></button>
+        </div>
+
+
+        <div class="timeRunning"></div>
+
+    </div>
+</div>
+
+    <!-- Existing Bottom Box -->
+    <div class="bottom-box">
+        <div class="box-content">
+            <div class="box-text">
+                Join the ICONIC IT Club today and be part of the tech revolution!
+            </div>
+            <div class="box-buttons">
+                <button class="box-button">Events</button>
+                <button class="box-button">Membership</button>
+                <button class="box-button">Contact</button>
+            </div>
+        </div>
+    </div>
+</div>
+		
+		<div id="about-page" class="page">
+			<div class="glass-container">
+				<h2 class="about-title">ABOUT ICONIC IT CLUB</h2>
+				
+				<div class="about-intro">
+					<h3>Who We Are</h3>
+					<p>ICONIC IT Club is the premier technology organization at Bangladesh Air Force Shaheen College Kurmitola, dedicated to fostering innovation, technical skills, and digital literacy among students.</p>
+					
+					<div class="achievements-grid">
+						<div class="achievement-item">
+							<i class="fas fa-trophy"></i>
+							<span>2x ICT Olympiad Champions</span>
+						</div>
+						<div class="achievement-item">
+							<i class="fas fa-users"></i>
+							<span>200+ Active Members</span>
+						</div>
+						<div class="achievement-item">
+							<i class="fas fa-calendar-alt"></i>
+							<span>10+ Annual Events</span>
+						</div>
+						<div class="achievement-item">
+							<i class="fas fa-graduation-cap"></i>
+							<span>Est. 2022</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="mission-vision">
+					<div class="mission">
+						<h3>🎯 Our Mission</h3>
+						<p>To create a dynamic platform where students can explore, learn, and excel in information technology through hands-on experiences, workshops, and competitions.</p>
+					</div>
+					<div class="vision">
+						<h3>🔭 Our Vision</h3>
+						<p>To develop the next generation of tech leaders who will drive innovation and digital transformation in Bangladesh and beyond.</p>
+					</div>
+				</div>
+
+				<div class="team-section">
+					<h3>👨‍🏫 Our Moderators</h3>
+					<div class="team-grid">
+						<div class="team-card" data-member="rashid">
+							<div class="team-avatar">
+								<img src="team/rashid.jpg" alt="MD Abdur Rashid" loading="lazy">
+							</div>
+							<h4>MD Abdur Rashid</h4>
+							<span class="team-role">Moderator</span>
+						</div>
+
+						<div class="team-card" data-member="shohag">
+							<div class="team-avatar">
+								<img src="team/shohag.jpg" alt="NAS Shohag" loading="lazy">
+							</div>
+							<h4>NAS Shohag</h4>
+							<span class="team-role">Co-Moderator</span>
+						</div>						
+					</div>
+				</div>
+
+				<div class="panel-navigation">
+					<h3>👥 Executive Committee</h3>
+					<div class="panel-tabs">
+						<button class="panel-tab active" data-panel="current">Current Panel (2025-2026)</button>
+						<button class="panel-tab" data-panel="2024-2025">2024-2025 Panel</button>
+						<button class="panel-tab" data-panel="2023-2024">2023-2024 Panel</button>
+						<button class="panel-tab" data-panel="2022-2023">2022-2023 Panel</button>
+					</div>
+				</div>
+
+				<div id="panel-current" class="panel-content active">
+					<div class="team-grid">
+						<div class="team-card" data-member="reham">
+							<div class="team-avatar">
+								<img src="Executives/gen4/reham.jpg" alt="Reham Mursalin" loading="lazy">
+							</div>
+							<h4>Reham Mursalin</h4>
+							<span class="team-role">President</span>
+						</div>
+						<div class="team-card" data-member="tanha">
+							<div class="team-avatar">
+								<img src="Executives/gen4/tanha.jpg" alt="Syeda Tanha" loading="lazy">
+							</div>
+							<h4>Syeda Tanha</h4>
+							<span class="team-role">Vice President</span>
+						</div>
+						<div class="team-card" data-member="fuad">
+							<div class="team-avatar">
+								<img src="Executives/gen4/fuad.jpg" alt="Muhtasim Fuad" loading="lazy">
+							</div>
+							<h4>Muhtasim Fuad</h4>
+							<span class="team-role">General Secretary</span>
+						</div>
+						<div class="team-card" data-member="zakah">
+							<div class="team-avatar">
+								<img src="Executives/gen4/zakah.jpg" alt="Zakah Nur" loading="lazy">
+							</div>
+							<h4>Zakah Nur</h4>
+							<span class="team-role">Administrative Secretary</span>
+						</div>
+						<div class="team-card" data-member="mohaiminul">
+							<div class="team-avatar">
+								<img src="Executives/gen4/mohaiminul.jpg" alt="Mohaiminul Islam" loading="lazy">
+							</div>
+							<h4>Mohaiminul Islam</h4>
+							<span class="team-role">Ordinator</span>
+						</div>
+						<div class="team-card" data-member="sadman">
+							<div class="team-avatar">
+								<img src="Executives/gen4/sadman.jpg" alt="Sadman Rahman" loading="lazy">
+							</div>
+							<h4>Sadman Rahman</h4>
+							<span class="team-role">Organizing Secretary</span>
+						</div>
+						<div class="team-card" data-member="iffat">
+							<div class="team-avatar">
+								<img src="Executives/gen4/iffat.jpg" alt="Iffat A. Labonno" loading="lazy">
+							</div>
+							<h4>Iffat A. Labonno</h4>
+							<span class="team-role">Treasurer</span>
+						</div>
+						<div class="team-card" data-member="polash">
+							<div class="team-avatar">
+								<img src="Executives/gen4/polash.jpg" alt="SH Polash" loading="lazy">
+							</div>
+							<h4>SH Polash</h4>
+							<span class="team-role">Senior Programmer</span>
+						</div>
+						<div class="team-card" data-member="nashid">
+							<div class="team-avatar">
+								<img src="Executives/gen4/nashid.jpg" alt="SA Nashid" loading="lazy">
+							</div>
+							<h4>SA Nashid</h4>
+							<span class="team-role">Senior Designer</span>
+						</div>
+						<div class="team-card" data-member="nirob">
+							<div class="team-avatar">
+								<img src="Executives/gen4/nirob.jpg" alt="Nirob Hasan" loading="lazy">
+							</div>
+							<h4>Nirob Hasan</h4>
+							<span class="team-role">Senior Analytic</span>
+						</div>
+						<div class="team-card" data-member="rakib">
+							<div class="team-avatar">
+								<img src="Executives/gen4/rakib.jpg" alt="Rakib Shahriar" loading="lazy">
+							</div>
+							<h4>Rakib Shahriar</h4>
+							<span class="team-role">Asst Designer</span>
+						</div>
+						<div class="team-card" data-member="tahsin">
+							<div class="team-avatar">
+								<img src="Executives/gen4/tahsin.jpg" alt="Tahsin Khan" loading="lazy">
+							</div>
+							<h4>Tahsin Khan</h4>
+							<span class="team-role">Asst Designer</span>
+						</div>
+						<div class="team-card" data-member="khalid">
+							<div class="team-avatar">
+								<img src="Executives/gen4/khalid.jpg" alt="Khalid Bin Solaiman" loading="lazy">
+							</div>
+							<h4>Khalid Bin Solaiman</h4>
+							<span class="team-role">Asst Analytic</span>
+						</div>
+					</div>
+				</div>
+
+				<div id="panel-2024-2025" class="panel-content">
+					<div class="team-grid">
+						<div class="team-card">
+							<div class="team-avatar">
+								<img src="Executives/gen3/shahid.jpg" alt="Shahid Alam" loading="lazy">
+							</div>
+							<h4>Shahid Alam</h4>
+							<span class="team-role">President</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar">
+								<img src="Executives/gen3/suraiya.jpg" alt="Suraiya Akter" loading="lazy">
+							</div>
+							<h4>Suraiya Akter</h4>
+							<span class="team-role">Vice President</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar">
+								<img src="Executives/gen3/nayeem.jpg" alt="Nayeem Ul Hadi" loading="lazy">
+							</div>
+							<h4>Nayeem Ul Hadi</h4>
+							<span class="team-role">General Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar">
+								<img src="Executives/gen3/jubayer.jpg" alt="Jubayer Rahman" loading="lazy">
+							</div>
+							<h4>Jubayer Rahman</h4>
+							<span class="team-role">Organizer</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar">
+								<img src="Executives/gen3/mahim.jpg" alt="Muhiminul Islam" loading="lazy">
+							</div>
+							<h4>Muhiminul Islam</h4>
+							<span class="team-role">Administrative Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar">
+								<img src="Executives/gen3/mushfika.jpg" alt="Mushfika Mehenaz" loading="lazy">
+							</div>
+							<h4>Mushfika Mehenaz</h4>
+							<span class="team-role">Asst. Administrative Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar">
+								<img src="Executives/gen3/shariyar.jpg" alt="Shariyar Suhad" loading="lazy">
+							</div>
+							<h4>Shariyar Suhad</h4>
+							<span class="team-role">Asst. General Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar">
+								<img src="Executives/gen3/nazmul.jpg" alt="Nazmul Islam" loading="lazy">
+							</div>
+							<h4>Nazmul Islam</h4>
+							<span class="team-role">Ordinator</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar">
+								<img src="Executives/gen3/farhan.jpg" alt="Md. Farhan" loading="lazy">
+							</div>
+							<h4>Md. Farhan</h4>
+							<span class="team-role">Co-Ordinator</span>
+						</div>
+					</div>
+				</div>
+
+				<div id="panel-2023-2024" class="panel-content">
+					<div class="team-grid">
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/tasnim.jpg" alt="Tasnim Al Sahat" loading="lazy"></div>
+							<h4>Tasnim Al Sahat</h4>
+							<span class="team-role">President</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/tanzim.jpg" alt="Mir Tanzim Ibtihaj" loading="lazy"></div>
+							<h4>Mir Tanzim Ibtihaj</h4>
+							<span class="team-role">Vice President</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/shahriar.jpg" alt="Shahriar Saheen Labib" loading="lazy"></div>
+							<h4>Shahriar Saheen Labib</h4>
+							<span class="team-role">General Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/farhat.jpg" alt="Farhat Labib" loading="lazy"></div>
+							<h4>Farhat Labib</h4>
+							<span class="team-role">Organizer</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/sakin.jpg" alt="Md. Sakin Islam" loading="lazy"></div>
+							<h4>Md. Sakin Islam</h4>
+							<span class="team-role">Administrative Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/khadija.jpg" alt="Khadija Ayman Arola" loading="lazy"></div>
+							<h4>Khadija Ayman Arola</h4>
+							<span class="team-role">Asst. Administrative Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/naheen.jpg" alt="Naheen Munkar Farhan" loading="lazy"></div>
+							<h4>Naheen Munkar Farhan</h4>
+							<span class="team-role">Asst. General Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/mamunur.jpg" alt="Mamunur Rashid Hamid" loading="lazy"></div>
+							<h4>Mamunur Rashid Hamid</h4>
+							<span class="team-role">Asst. Organizer</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/abdullah.jpg" alt="Abdullah Ahened Rafee" loading="lazy"></div>
+							<h4>Abdullah Ahened Rafee</h4>
+							<span class="team-role">Ordinator</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/jakeya.jpg" alt="Jakeya" loading="lazy"></div>
+							<h4>Jakeya</h4>
+							<span class="team-role">Co-Ordinator</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/minion.jpg" alt="Minion Moin Anan" loading="lazy"></div>
+							<h4>Minion Moin Anan</h4>
+							<span class="team-role">Class-10 Male Ambassador</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/eva.jpg" alt="Tahsin Ferdous Eva" loading="lazy"></div>
+							<h4>Tahsin Ferdous Eva</h4>
+							<span class="team-role">Class-10 Female Ambassador</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/abir.jpg" alt="Abir Hossain" loading="lazy"></div>
+							<h4>Abir Hossain</h4>
+							<span class="team-role">Class-9 Male Ambassador</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/momo.jpg" alt="Momo Zaman" loading="lazy"></div>
+							<h4>Momo Zaman</h4>
+							<span class="team-role">Class-9 Female Ambassador</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/ibrahim.jpg" alt="Ibrahim Rupom" loading="lazy"></div>
+							<h4>Ibrahim Rupom</h4>
+							<span class="team-role">Class-8 Male Ambassador</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen2/nishat.jpg" alt="Nishat Tasnim" loading="lazy"></div>
+							<h4>Nishat Tasnim</h4>
+							<span class="team-role">Class-8 Female Ambassador</span>
+						</div>
+					</div>
+				</div>
+
+				<div id="panel-2022-2023" class="panel-content">
+					<div class="team-grid">
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/tasdikul.jpg" alt="AKM Tasdikul Islam" loading="lazy"></div>
+							<h4>AKM Tasdikul Islam</h4>
+							<span class="team-role">President</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/farhan.jpg" alt="MD Farhan Shahriar" loading="lazy"></div>
+							<h4>MD Farhan Shahriar</h4>
+							<span class="team-role">Vice President</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/muztoba.jpg" alt="MD Muztoba" loading="lazy"></div>
+							<h4>MD Muztoba</h4>
+							<span class="team-role">General Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/samiul.jpg" alt="Samiul Islam" loading="lazy"></div>
+							<h4>Samiul Islam</h4>
+							<span class="team-role">Asst. General Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/ashik.jpg" alt="MD Shihabuzzaman" loading="lazy"></div>
+							<h4>MD Shihabuzzaman</h4>
+							<span class="team-role">Administrative Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/tahmidur.jpg" alt="MD Tahmidur Rahman" loading="lazy"></div>
+							<h4>MD Tahmidur Rahman</h4>
+							<span class="team-role">Asst. Administrative Secretary</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/parvez.jpg" alt="Parvez M Salman" loading="lazy"></div>
+							<h4>Parvez M Salman</h4>
+							<span class="team-role">Organizer</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/taposhi.jpg" alt="Taposhi Sumaiya" loading="lazy"></div>
+							<h4>Taposhi Sumaiya</h4>
+							<span class="team-role">Asst. Organizer</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/ahnaf.jpg" alt="Ahnaf Rakin" loading="lazy"></div>
+							<h4>Ahnaf Rakin</h4>
+							<span class="team-role">Ordinator</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/abrar.jpg" alt="Abrar Yeasir" loading="lazy"></div>
+							<h4>Abrar Yeasir</h4>
+							<span class="team-role">Class-10 Male Ambassador</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/zeeba.jpg" alt="Zeeba Maliha" loading="lazy"></div>
+							<h4>Zeeba Maliha</h4>
+							<span class="team-role">Class-10 Female Ambassador</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/akib.jpg" alt="Akib Jabed" loading="lazy"></div>
+							<h4>Akib Jabed</h4>
+							<span class="team-role">Class-9 Male Ambassador</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/mariya.jpg" alt="Mariya Somaita" loading="lazy"></div>
+							<h4>Mariya Somaita</h4>
+							<span class="team-role">Class-9 Female Ambassador</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/sajedul.jpg" alt="Sajedul Islam" loading="lazy"></div>
+							<h4>Sajedul Islam</h4>
+							<span class="team-role">Class-8 Male Ambassador</span>
+						</div>
+						<div class="team-card">
+							<div class="team-avatar"><img src="Executives/gen1/annesha.jpg" alt="Annesha Mallik" loading="lazy"></div>
+							<h4>Annesha Mallik</h4>
+							<span class="team-role">Class-8 Female Ambassador</span>
+						</div>
+					</div>
+				</div>
+				<div class="activities-section">
+					<h3>🚀 What We Do</h3>
+					<div class="activities-grid">
+						<div class="activity-card">
+							<i class="fas fa-code"></i>
+							<h4>Programming Workshops</h4>
+							<p>Regular sessions on Python, Web Development, and competitive programming</p>
+						</div>
+						
+						<div class="activity-card">
+							<i class="fas fa-robot"></i>
+							<h4>Tech Competitions</h4>
+							<p>Organize and participate in hackathons, olympiads, and coding contests</p>
+						</div>
+						
+						<div class="activity-card">
+							<i class="fas fa-users"></i>
+							<h4>Community Building</h4>
+							<p>Networking events, tech talks, and collaborative projects</p>
+						</div>
+						
+						<div class="activity-card">
+							<i class="fas fa-graduation-cap"></i>
+							<h4>Skill Development</h4>
+							<p>Training sessions on latest technologies and career guidance</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+		
+        <div id="events-page" class="page">
+            <div class="glass-container">
+                <p class="events-title">EVENTS</p>
+                <p class="events-subtitle">Discover our upcoming, ongoing and past events</p>
+            </div>
+
+            <div class="events-grid">
+                <div class="event-tile" data-event="ictob1">
+                    <div class="event-image" style="background-image: url('Events/ICTOBS1/Season1.png'); background-size: cover; background-position: center;"></div>
+                    <div class="event-overlay">
+                        <h3 class="event-name">ICT Olympiad Season 1</h3>
+                        <p class="event-date">2022</p>
+                    </div>
+                </div>
+
+                <div class="event-tile" data-event="ictob2">
+                    <div class="event-image" style="background-image: url('Events/ICTOBS2/ICTOBS2.jpg'); background-size: cover; background-position: center;"></div>
+                    <div class="event-overlay">
+                        <h3 class="event-name">ICT Olympiad Season 2</h3>
+                        <p class="event-date">2025-2026</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="event-detail-ictob1" class="event-detail">
+                <div class="event-detail-header">
+                    <button class="back-button" onclick="hideEventDetails()">
+                        <i class="fas fa-arrow-left"></i> Back to Events
+                    </button>
+                </div>
+                
+                <div class="event-detail-body">
+                    <h2 class="event-detail-title">ICT Olympiad Season 1</h2>
+                    
+                    <div class="slider-container">
+                        <div class="slider">
+                            <div class="slide active">
+                                <img src="Events/ICTOBS1/imageictob.jpg" alt="ICTOB Season 1" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS1/image1.jpg" alt="ICTOB Season 1" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS1/image2.jpg" alt="ICTOB Season 1" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS1/image3.jpg" alt="ICTOB Season 1" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS1/image4.jpg" alt="ICTOB Season 1" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS1/image5.jpg" alt="ICTOB Season 1" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS1/image6.jpg" alt="ICTOB Season 1" loading="lazy">
+                            </div>
+
+                            <div class="nav left">&#10094;</div>
+                            <div class="nav right">&#10095;</div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-detail-info">
+                        <h3>🏆 Best Campus Award – ICTOB Season 1 (2022)</h3>
+                        <p class="event-detail-description">
+                            In <strong>2022</strong>, Bangladesh Air Force Shaheen College Dhaka proudly received the <strong>Best Campus Award</strong> at the <strong>ICT Olympiad of Bangladesh (ICTOB) Season 1</strong> — a milestone achievement that highlighted our college's vibrant tech culture and student enthusiasm.
+                        </p>
+                        <p class="event-detail-description">
+                            The award was granted based on <strong>participation count</strong>, and <strong>BAFSK made history with the highest number of recorded participants</strong> across all campuses in the country.
+                        </p>
+                        <p class="event-detail-description">
+                            This outstanding turnout was made possible by the relentless efforts of the <strong>Iconic IT Club BAFSK</strong>, who <strong>hosted and managed the entire participant registration process</strong> within our campus. From organizing sign-ups to motivating students, our club played a pivotal role in mobilizing tech-minded talents to step into the national spotlight.
+                        </p>
+                        <p class="event-detail-description">
+                            This moment stands as a proud legacy of how student-led initiatives can drive real impact and bring glory to our institution.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="event-detail-ictob2" class="event-detail">
+                <div class="event-detail-header">
+                    <button class="back-button" onclick="hideEventDetails()">
+                        <i class="fas fa-arrow-left"></i> Back to Events
+                    </button>
+                </div>
+                
+                <div class="event-detail-body">
+                    <h2 class="event-detail-title">ICT Olympiad Season 2</h2>
+                    
+                    <div class="slider-container">
+                        <div class="slider">
+                            <div class="slide active">
+                                <img src="Events/ICTOBS2/1.jpg" alt="ICTOB Season 2" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS2/2.jpg" alt="ICTOB Season 2" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS2/3.jpg" alt="ICTOB Season 2" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS2/4.jpg" alt="ICTOB Season 2" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS2/5.jpg" alt="ICTOB Season 2" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS2/6.jpg" alt="ICTOB Season 2" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS2/7.jpg" alt="ICTOB Season 2" loading="lazy">
+                            </div>
+                            <div class="slide">
+                                <img src="Events/ICTOBS2/8.jpg" alt="ICTOB Season 2" loading="lazy">
+                            </div>
+
+                            <div class="nav left">&#10094;</div>
+                            <div class="nav right">&#10095;</div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-detail-info">
+                        <h3>🏆 Back-to-Back Champions – ICTOB Season 2 (2024–2025)</h3>
+                        <p class="event-detail-description">
+                            Following our historic achievement in Season 1, <strong>Bangladesh Air Force Shaheen College Dhaka</strong> has once again secured the prestigious <strong>Best Campus Ambassador Award</strong> in the <strong>ICT Olympiad of Bangladesh (ICTOB) Season 2</strong>, cementing our position as the leading institution in technology education and participation.
+                        </p>
+                        <p class="event-detail-description">
+                            For the second consecutive time, our college recorded the <strong>highest number of participants nationwide</strong>, demonstrating our unwavering commitment to fostering technological excellence and digital literacy among students.
+                        </p>
+                        <p class="event-detail-description">
+                            The <strong>Iconic IT Club BAFSK</strong> successfully organized and managed the entire registration process, mobilizing an even larger number of students compared to the previous season. Our coordinated efforts ensured maximum participation and engagement throughout the competition period.
+                        </p>
+                        <p class="event-detail-description">
+                            The Season 2 journey culminated in an exhilarating <strong>Gala Round</strong> where our participants showcased exceptional talent and knowledge, with several students achieving remarkable positions in the national rankings.
+                        </p>
+                        <p class="event-detail-description">
+                            This back-to-back achievement solidifies our legacy as pioneers in promoting ICT education and highlights the transformative impact of student-led initiatives in shaping the future of technology in Bangladesh.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact-page" class="page">
+            <div class="glass-container">
+                <h2 class="contact-title">GET IN TOUCH</h2>
+                <div class="contact-content">
+                    <div class="contact-info-section">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>Location</h3>
+                                <p>BAF Shaheen College Kurmitola, Dhaka</p>
+                            </div>
+                        </div>
+                        <div class="map-container">
+                            <a href="https://maps.app.goo.gl/g2J1r2nZJc6g9g3w5" target="_blank" rel="noopener noreferrer" title="Click to open in Google Maps">
+                               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.098492061033!2d90.40230267591696!3d23.81511098612738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c65c71672525%3A0xf04b58f33855660!2sBAF%20Shaheen%20College%20Kurmitola!5e0!3m2!1sen!2sbd!4v1717071025537!5m2!1sen!2sbd" width="100%" height="250" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>Email</h3>
+                                <p>iconicitclub.bafsk@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>Phone</h3>
+                                <p>+880 1567904190</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-media">
+                            <p>Reach us through social media:</p>
+                            <div class="social-icons">
+                                <a href="https://www.facebook.com/iitc.bafsk" class="social-link">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="message-form-section">
+                        <h3>Send us a Message</h3>
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Your Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="class">Your Class</label>
+                                    <input type="text" id="class" name="class">
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" id="subject" name="subject" required>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+		
+		<div id="membership-page" class="page">
+			<div class="glass-container">
+				<h2 class="membership-title">JOIN ICONIC IT CLUB</h2>
+				<div class="membership-content">
+					<div class="membership-info">
+						<h3>Why Join Us?</h3>
+						<ul>
+							<li>🚀 Access to exclusive tech workshops</li>
+							<li>💡 Participate in national competitions</li>
+							<li>👥 Network with like-minded students</li>
+							<li>🎓 Develop valuable IT skills</li>
+							<li>🏆 Be part of award-winning teams</li>
+						</ul>
+						
+						<div class="benefits-grid">
+							<div class="benefit-card">
+								<i class="fas fa-users"></i>
+								<h4>Community</h4>
+								<p class="benefit-text">Join 200+ tech enthusiasts</p>
+							</div>
+							<div class="benefit-card">
+								<i class="fas fa-trophy"></i>
+								<h4>Achievements</h4>
+								<p class="benefit-text">2x ICT Olympiad Champions</p>
+							</div>
+							<div class="benefit-card">
+								<i class="fas fa-laptop-code"></i>
+								<h4>Skills</h4>
+								<p class="benefit-text">Learn cutting-edge technologies</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="membership-form-section">
+						<h3>Ready to Join?</h3>
+						<p>Fill out our membership form to become part of the ICONIC IT Club family!</p>
+						
+						<div class="form-actions">
+							<button class="membership-form-btn" onclick="window.open('https://forms.gle/s7gCaPPyS3oCMKDG9', '_blank')">
+								<i class="fas fa-edit"></i> Fill Membership Form
+							</button>
+							<p class="form-note">You'll be redirected to our secure Google Form</p>
+						</div>
+						
+						<div class="contact-info">
+							<p><strong>Questions?</strong> Contact us at: iconicitclub.bafsk@gmail.com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </main>
+
+	<div id="profile-modal" class="profile-modal">
+		<div class="modal-content">
+			<button class="modal-close">&times;</button>
+			<div class="modal-body">
+				<div class="modal-avatar">
+					<img id="modal-avatar" src="" alt="Member Photo">
+				</div>
+				<div class="modal-info">
+					<h2 id="modal-name"></h2>
+					<span id="modal-role" class="modal-role"></span>
+					
+					<div class="modal-bio-section">
+						<p id="modal-bio" class="modal-bio"></p>
+					</div>
+					
+					<div class="resume-sections">
+						<div class="resume-section">
+							<h3><i class="fas fa-user-graduate"></i> Education</h3>
+							<div id="modal-education" class="resume-content"></div>
+						</div>
+						
+						<div class="resume-section">
+							<h3><i class="fas fa-code"></i> Skills</h3>
+							<div id="modal-skills" class="resume-content"></div>
+						</div>
+						
+
+					</div>
+
+					<div class="modal-contact">
+						<div class="contact-item">
+							<i class="fas fa-envelope"></i>
+							<span id="modal-email"></span>
+						</div>
+						<div class="contact-item">
+							<i class="fas fa-phone"></i>
+							<span id="modal-phone"></span>
+						</div>
+						<div class="contact-item">
+							<i class="fas fa-graduation-cap"></i>
+							<span id="modal-class"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
