@@ -551,7 +551,7 @@ function initProfileModals() {
             bio: '​Always learning. Always leveling up.',
             email: 'rakibshahriar2008@gmail.com',
             phone: 'Via Club Contact',
-            class: 'X',
+            class: 'Class X',
             education: 'Bangladesh Air Force Shaheen College Kurmitola, Science Group',
             skills: ['Editing', 'Designing', 'Programing']
         },
@@ -796,3 +796,4 @@ function initNewSlider() {
     document.head.appendChild(styleSheet);
 
 }
+
