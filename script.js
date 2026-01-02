@@ -550,7 +550,7 @@ function initProfileModals() {
             role: 'Asst Designer',
             bio: '​Always learning. Always leveling up.',
             email: 'rakibshahriar2008@gmail.com',
-            phone: '+880 1310 397072',
+            phone: 'Via Club Contact',
             class: 'X',
             education: 'Bangladesh Air Force Shaheen College Kurmitola, Science Group',
             skills: ['Editing', 'Designing', 'Programing']
@@ -794,4 +794,5 @@ function initNewSlider() {
     const styleSheet = document.createElement("style");
     styleSheet.innerText = `@keyframes runningTime { from{width: 0%;} to{width: 100%;} }`;
     document.head.appendChild(styleSheet);
+
 }
